@@ -1,0 +1,125 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Livres
+{% endblock %}
+
+{% block body %}
+<div class="b">
+	{% if livres|length > 0  %}
+		<h1 align="center"style="color:white;">Livres</h1>
+
+		<table id="livres" class="table table-bordered" border="3" align="center">
+			<thead>
+				<tr>
+                    <th>Id</th>
+					<th>Isbn</th>
+					<th>Titre</th>
+					<th>Nombre de pages</th>
+					<th>Date de parution</th>
+					<th>Note</th>
+                    <th>Actions</th>
+					
+				</tr>
+			</thead>
+			<tbody>
+				{% for livre in livres %}
+					<tr>
+                        <td>{{ livre.id }}</td>
+						<td>{{ livre.isbn }}</td>
+						<td>{{ livre.titre }}</td>
+						<td>{{ livre.nombrePages }}</td>
+						<td>{{ livre.dateDeParution ? livre.dateDeParution|date('Y-m-d') : '' }}</td>
+						<td>{{ livre.note }}</td>
+						<td>
+                            <button  class="button-24"><a  href="{{ path('livre_show', {'id': livre.id}) }}"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
+                                <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z"/>
+                                <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z"/>
+                              </svg>Show</a></button><br>
+                              {% if is_granted('ROLE_ADMIN') %}
+							<button  class="button-24" >	<a  href="{{ path('livre_edit', {'id': livre.id}) }}"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen" viewBox="0 0 16 16">
+                                <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001zm-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z"/>
+                              </svg>Edit</a></button>{% endif %}<br>
+                              <button type="button" class="btn1"><a href="{{ path('livre_index') }}">back to list</a></button><br>
+                              {% if is_granted('ROLE_ADMIN') %}
+                              {{ include('livre/_delete_form.html.twig') }}
+                              {% endif %}
+                                
+                
+						</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+
+	{% else %}
+		<p class="alert alert-danger">Aucun résultat</p>
+	{% endif %}
+</div>
+    {% block stylesheet %}
+    <style>
+        .btn1{
+        width: 150px;
+  background: #C1BBBA  ;
+  border: 1px solid #C1BBBA ;
+  border-radius: 6px;
+  box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
+  box-sizing: border-box;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: inline-block;
+  font-family: nunito,roboto,proxima-nova,"proxima nova",sans-serif;
+  font-size: 16px;
+  font-weight: 800;
+  line-height: 16px;
+  min-height: 40px;
+    }
+    body{
+        background: #C68649;
+    }
+    .table{
+        width: 50% ;
+        background: #8F94E5 ;
+    }
+    .button-24 {
+      width: 100px;
+  background: #C1BBBA  ;
+  border: 1px solid #C1BBBA ;
+  border-radius: 6px;
+  box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
+  box-sizing: border-box;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: inline-block;
+  font-family: nunito,roboto,proxima-nova,"proxima nova",sans-serif;
+  font-size: 16px;
+  font-weight: 800;
+  line-height: 16px;
+  min-height: 40px;
+  outline: 0;
+  padding: 12px 14px;
+  text-align: center;
+  text-rendering: geometricprecision;
+  text-transform: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: middle;
+}
+
+.button-24:hover,
+.button-24:active {
+  background-color: initial;
+  background-position: 0 0;
+  color: #FF4742;
+}
+
+.button-24:active {
+  opacity: .5;
+}
+
+    
+    </style>
+    
+    {% endblock %}
+{% endblock %}
+

@@ -1,0 +1,95 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Livre{% endblock %}
+
+{% block body %}
+<div class="b">
+    <h1 align="center"style="color:white;" >Livre</h1>
+
+    <table class="table table-bordered" border="3" align="center" >
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ livre.id }}</td>
+            </tr>
+            <tr>
+                <th>Isbn</th>
+                <td>{{ livre.isbn }}</td>
+            </tr>
+            <tr>
+                <th>Titre</th>
+                <td>{{ livre.titre }}</td>
+            </tr>
+            <tr>
+                <th>Nombre_pages</th>
+                <td>{{ livre.nombrePages }}</td>
+            </tr>
+            <tr>
+                <th>Date_de_parution</th>
+                <td>{{ livre.dateDeParution ? livre.dateDeParution|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Note</th>
+                <td>{{ livre.note }}</td>
+            </tr>
+        </tbody>
+    </table><br>
+<table align="center" >
+    <tr>
+        <td>
+    <button type="button" class="btn1"><a href="{{ path('livre_index') }}">back to list</a></button>
+</td>
+{% if is_granted('ROLE_ADMIN') %}
+   <td> 
+       <button type="button" class="btn2"><a href="{{ path('livre_edit', {'id': livre.id}) }}">edit</a></button>
+    </td>
+  <td> 
+      {{ include('livre/_delete_form.html.twig') }}
+</td>
+{% endif  %}
+</tr>
+</table></div>
+    {% block stylesheet %}
+    <style>.table{
+        width: 50% ;
+        background: #C68649 ;
+    }
+    .btn1{
+        width: 150px;
+  background: #C1BBBA  ;
+  border: 1px solid #C1BBBA ;
+  border-radius: 6px;
+  box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
+  box-sizing: border-box;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: inline-block;
+  font-family: nunito,roboto,proxima-nova,"proxima nova",sans-serif;
+  font-size: 16px;
+  font-weight: 800;
+  line-height: 16px;
+  min-height: 40px;
+    }
+    .btn2{
+        width: 150px;
+  background: #ED8E06  ;
+  border: 1px solid #ED8E06 ;
+  border-radius: 6px;
+  box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
+  box-sizing: border-box;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: inline-block;
+  font-family: nunito,roboto,proxima-nova,"proxima nova",sans-serif;
+  font-size: 16px;
+  font-weight: 800;
+  line-height: 16px;
+  min-height: 40px;
+    }
+    body{
+        background-image: url("../image/bg.jpg");
+    }
+    </style>
+    
+    {% endblock %}
+{% endblock %}

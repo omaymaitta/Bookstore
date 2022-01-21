@@ -1,0 +1,41 @@
+{{ form_start(form) }}
+{% form_theme form 'bootstrap_4_layout.html.twig' %}
+<div class="formulaire">
+    {{ form_widget(form) }}
+  <br><br>  <button class="btn2">{{ button_label|default('Save') }}</button>
+</div>
+    {% block stylesheet %}
+<style>
+    .btn2{
+        position: relative;
+ left: 160px;
+        width: 150px;
+  background: #ED8E06  ;
+  border: 1px solid #ED8E06 ;
+  border-radius: 6px;
+  box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
+  box-sizing: border-box;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: inline-block;
+  font-family: nunito,roboto,proxima-nova,"proxima nova",sans-serif;
+  font-size: 16px;
+  font-weight: 800;
+  line-height: 16px;
+  min-height: 40px;
+    }
+.formulaire{
+  
+width: 50%;
+position: relative;
+top: 40px; left: 400px;
+    }
+    
+    .formulaire, label{
+        font-size: 18px;
+        font-weight: bold;
+    }
+    
+</style>
+ {% endblock %}
+{{ form_end(form) }}

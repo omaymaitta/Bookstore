@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register{% endblock %}
+
+{% block body %}
+
+<form method="post">
+    <h1 class="h3 mb-3 font-weight-normal" align="center">Register</h1>
+
+    {{ form_start(registrationForm) }}
+    
+     <div class="email"><b>{{ form_row(registrationForm.email) }}</b></div>  
+       <br>
+       <b>{{ form_row(registrationForm.plainPassword, {
+            label: 'Password'
+        }) }}</b> <br>
+        <div class="term"> <b>{{ form_row(registrationForm.agreeTerms) }}</b> </div>
+<br>
+     <div align="center"><button type="submit" class="btn btn-lg btn-primary">Register</button></div>   
+    {{ form_end(registrationForm) }}
+</form>
+    {% block stylesheet %}
+<style>
+    body{
+        background-image: url("../image/bg.jpg");
+    }
+    input{
+        position: relative;
+            left: 100px;
+            width: 200px;
+    }
+    .email input{
+        position: relative;
+            left: 130px;
+            width: 200px;
+    }
+    .term input{
+        position: relative;
+            left: 0px;
+           
+    }
+form{
+    width: 30%;
+    position: relative;
+    top: 200px;
+    left: 510px ;
+    align-items: center;
+    background: #E6DEDD;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 2) 1px 2px 4px;
+    padding: 12px;
+    
+}
+
+</style>
+{% endblock %}
+{% endblock %}
